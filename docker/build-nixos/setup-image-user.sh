@@ -19,4 +19,7 @@ echo 'trap "echo build done | nc cleanup-qemu 11111 2>/dev/null || echo cleanup 
 echo "cloning nix packages..."
 git clone --depth=1 -b "$NIXPKGS_BRANCH" "$NIXPKGS_URL" nixpkgs
 
+echo "cloning nixos-hardware..."
+git clone https://github.com/NixOS/nixos-hardware.git
+
 echo "image is ready"
