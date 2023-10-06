@@ -21,6 +21,15 @@ in  {
     };
   };
 
+  # Fix missing modules
+  # https://github.com/NixOS/nixpkgs/issues/154163
+  nixpkgs.overlays = [
+    (final: super: {
+      makeModulesClosure = x:
+        super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   # bzip2 compression takes loads of time with emulation, skip it. Enable this if you're low
   # on space.
   sdImage.compressImage = false;
